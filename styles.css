@@ -1,0 +1,19 @@
+*{box-sizing:border-box}body{margin:0;font:16px/1.6 system-ui,sans-serif;color:#222;background:#f6f6f4}
+.container{width:min(1100px,92%);margin:auto}
+header{background:#fff;position:sticky;top:0;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.logo{font-size:1.7rem;font-weight:700}.logo span{font-size:1rem;font-weight:400}
+nav a{margin-left:18px;text-decoration:none;color:#222}
+.btn{background:#20452e;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;border:none;display:inline-block}
+.secondary{background:#fff;color:#20452e;border:2px solid #20452e}
+.hero{height:70vh;background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80') center/cover}
+.overlay{display:flex;height:100%;align-items:center}.hero h1{font-size:4rem;color:#fff;margin:0}.hero p{color:#fff;font-size:1.3rem}
+.actions{margin-top:24px;display:flex;gap:14px}
+.services,.projects,.quote{padding:70px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:#fff;padding:24px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.06)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.tile{aspect-ratio:4/3;background:#ddd;border-radius:12px;display:flex;align-items:end;padding:18px;font-weight:bold}
+form{display:grid;gap:12px;max-width:650px}input,textarea{padding:14px;border:1px solid #ccc;border-radius:8px}textarea{min-height:140px}
+footer{background:#1f2a22;color:#fff;padding:30px 0;margin-top:40px}
+@media(max-width:700px){.hero h1{font-size:2.4rem}.nav{flex-direction:column;gap:10px}nav{display:flex;flex-wrap:wrap;justify-content:center}}
