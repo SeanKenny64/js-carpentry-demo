@@ -1,75 +1,541 @@
-<!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>JS Carpentry & Build – Demo Redesign</title>
-<link rel="stylesheet" href="styles.css">
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Builder and carpenter in Bristol | JS Carpentry &amp; Build</title>
+<meta name="description" content="General builder and carpenter in Bristol. Roofing, extensions, kitchens, house renovations and joinery for homes and businesses. Free, no-obligation quotes.">
+<link rel="canonical" href="https://jscarpentryandbuild.co.uk/">
+<meta property="og:title" content="Builder and carpenter in Bristol | JS Carpentry &amp; Build">
+<meta property="og:description" content="Roofing, extensions, kitchens, house renovations and joinery in Bristol. Free, no-obligation quotes.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://jscarpentryandbuild.co.uk/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<!--
+  SINGLE-PAGE DEMO for James, JS Carpentry & Build.
+
+  Structure: local-SEO layout, with the photo gallery and before/after slider
+  from the proof-led option, and the quote form from the quote-first option
+  placed low, in the contact section.
+
+  TO CHECK / FILL IN BEFORE SHOWING AS A REAL SITE
+  - AREAS: confirm with James which parts of Bristol (and nearby) he really covers.
+  - FAQ answers are based only on what his current site says.
+  - Gallery: replace each .ph placeholder with <img src="..." alt="..."> (keep class "tile-media"),
+    and edit the title and one-line description under it. Aim for 8 to 12 jobs.
+  - Before and after: swap the two .ba-pane placeholders for real photos of the same view.
+  - GOOGLE REVIEWS: see the marked slot under the testimonials. Once the Google
+    Business Profile exists and has reviews, either embed a widget script, fetch via
+    the Places API, or hand-copy them in. Then link the gallery photos to the profile.
+  - All text is taken from the current site (typos fixed). No new claims.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  "name": "JS Carpentry & Build",
+  "url": "https://jscarpentryandbuild.co.uk/",
+  "telephone": "+447970693964",
+  "email": "james@jscarpentryandbuild.co.uk",
+  "description": "General builder and carpenter working in Bristol. Domestic and commercial works including joinery, roofing, renovations, kitchens and extensions.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "51 Chelsea Park",
+    "addressLocality": "Bristol",
+    "postalCode": "BS5 6AH",
+    "addressCountry": "GB"
+  },
+  "areaServed": { "@type": "City", "name": "Bristol" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What building and carpentry work do you do in Bristol?",
+     "acceptedAnswer":{"@type":"Answer","text":"Roofing including loft conversions and repairs, single storey extensions, kitchens, whole house renovations, carpentry and joinery, and outdoor spaces such as patios, summer houses and garden houses."}},
+    {"@type":"Question","name":"Do you work on Victorian houses?",
+     "acceptedAnswer":{"@type":"Answer","text":"Yes. We have extensive experience of Victorian housing, including knock-throughs as part of modernisation, new openings for patio doors, and dealing with the issues that older buildings can reveal during works."}},
+    {"@type":"Question","name":"Do you do commercial work as well as domestic?",
+     "acceptedAnswer":{"@type":"Answer","text":"Yes. We do commercial works for small and medium businesses, and building and carpentry works of all sizes for domestic customers."}},
+    {"@type":"Question","name":"Can you manage the whole project?",
+     "acceptedAnswer":{"@type":"Answer","text":"Yes, project management and scheduling can be included if you want it. We also work with local joiners, plasterers, electricians and plumbers to deliver a complete service."}},
+    {"@type":"Question","name":"How do I get a quote?",
+     "acceptedAnswer":{"@type":"Answer","text":"Call 07970 693964 or email james@jscarpentryandbuild.co.uk. Quotes are free and with no obligation."}}
+  ]
+}
+</script>
+<style>
+:root{
+  --bg:#F4F6F5; --ink:#1B2421; --muted:#4B5953; --lead:#3E6B55; --lead-dark:#2C4E3D;
+  --red:#C8102E; --red-dark:#A00C24;
+  --tint:#E1EAE4; --line:#C9D3CD; --white:#fff;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Work Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.65;padding-bottom:4.5rem}
+a{color:var(--lead-dark)}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 1.25rem}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.15;font-weight:700}
+h1{font-size:clamp(2.2rem,5vw,3.6rem);max-width:16ch}
+h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:1rem}
+h3{font-size:1.2rem;margin-bottom:.35rem}
+p{margin:0 0 1rem;max-width:68ch}
+.skip{position:absolute;left:-999px;top:0;background:#fff;padding:.6rem 1rem;z-index:99}
+.skip:focus{left:0}
+
+/* header */
+header.site{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-top:.6rem;padding-bottom:.6rem;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--ink)}
+.brand img{height:44px;width:auto;display:block}
+.brand span{font:700 1.05rem var(--display)}
+nav ul{display:flex;gap:1.3rem;list-style:none;margin:0;padding:0;flex-wrap:wrap;align-items:center}
+nav a{text-decoration:none;color:var(--ink);font-weight:500}
+nav a:hover{text-decoration:underline}
+nav a.tel{background:var(--red);color:#fff;padding:.5rem .95rem;border-radius:4px;font-weight:600}
+nav a.tel:hover{background:var(--red-dark);text-decoration:none}
+@media (max-width:560px){.brand img{height:34px}}
+
+/* hero */
+.hero{padding:3.5rem 0 3rem}
+.hero p.lead{font-size:1.2rem;margin-top:1.25rem}
+.hero .btns{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.5rem}
+.btn{display:inline-block;padding:.85rem 1.35rem;border-radius:4px;font-weight:600;text-decoration:none;border:2px solid var(--lead-dark);cursor:pointer}
+.btn.main{background:var(--lead-dark);color:#fff}
+.btn.line{color:var(--lead-dark);background:transparent}
+.btn.red{background:var(--red);border-color:var(--red);color:#fff}
+.facts{list-style:none;padding:0;margin:2.2rem 0 0;display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.facts li{border-top:3px solid var(--red);padding-top:.6rem;font-size:.98rem;color:var(--muted)}
+.facts b{display:block;color:var(--ink);font:700 1.05rem var(--display)}
+@media (max-width:820px){.facts{grid-template-columns:repeat(2,1fr)}}
+
+section{padding:3.5rem 0}
+section.tint{background:var(--tint)}
+
+/* gallery */
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1.25rem}
+.chip{font:600 .95rem var(--body);border:1.5px solid var(--lead-dark);background:transparent;color:var(--lead-dark);padding:.45rem .95rem;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--lead-dark);color:#fff}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.tile{margin:0}
+.tile[hidden]{display:none}
+.tile-media{aspect-ratio:4/3;width:100%;object-fit:cover;display:block;border-radius:6px}
+.ph{display:grid;place-items:center;text-align:center;padding:1rem;color:var(--muted);font:500 .95rem var(--body);border-radius:6px;
+  background:repeating-linear-gradient(100deg,rgba(0,0,0,.04) 0 2px,transparent 2px 10px),#DDD9D1}
+.tile figcaption{padding:.7rem 0 0}
+.tile figcaption b{font:700 1.05rem var(--display);display:block}
+.tile figcaption span{color:var(--muted);font-size:.98rem}
+@media (max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.gallery{grid-template-columns:1fr}}
+
+/* before / after */
+.ba{--pos:50%;position:relative;aspect-ratio:16/8;overflow:hidden;border:1px solid var(--line);border-radius:6px;user-select:none;margin-top:1.5rem}
+.ba-pane{position:absolute;inset:0;display:grid;place-items:center;font:600 1rem var(--body);color:var(--muted)}
+.ba-pane.before{background:#CFCBC2}
+.ba-pane.after{background:#E4E0D6;clip-path:inset(0 0 0 var(--pos))}
+.ba-pane span{background:rgba(255,255,255,.75);padding:.3rem .7rem;border-radius:3px}
+.ba-handle{position:absolute;top:0;bottom:0;left:var(--pos);width:3px;background:#fff;transform:translateX(-50%);box-shadow:0 0 0 1px rgba(0,0,0,.25)}
+.ba-handle::after{content:"";position:absolute;top:50%;left:50%;width:2.4rem;height:2.4rem;border-radius:50%;background:#fff;transform:translate(-50%,-50%);box-shadow:0 0 0 1px rgba(0,0,0,.3)}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba:focus-within{outline:3px solid var(--red);outline-offset:3px}
+.ba-tag{position:absolute;top:.8rem;font:700 .85rem var(--body);background:var(--ink);color:#fff;padding:.2rem .6rem;border-radius:3px}
+.ba-tag.l{left:.8rem}.ba-tag.r{right:.8rem}
+
+/* services */
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.svc article{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:1.3rem}
+.svc article p{color:var(--muted);margin-bottom:.8rem;font-size:1rem}
+.svc a.more{font-weight:600}
+@media (max-width:900px){.svc{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:580px){.svc{grid-template-columns:1fr}}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+@media (max-width:800px){.two-col{grid-template-columns:1fr;gap:1.5rem}}
+
+.areas{list-style:none;margin:1.25rem 0 0;padding:0;display:flex;flex-wrap:wrap;gap:.5rem}
+.areas li{background:var(--white);border:1px solid var(--line);padding:.35rem .85rem;border-radius:999px;font-size:.98rem}
+
+details{background:var(--white);border:1px solid var(--line);border-radius:6px;margin-bottom:.7rem}
+summary{cursor:pointer;padding:1rem 1.2rem;font:700 1.08rem var(--display);list-style:none;display:flex;justify-content:space-between;gap:1rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--red)}
+details[open] summary::after{content:"\2212"}
+details p{padding:0 1.2rem;margin:0 0 1rem}
+
+blockquote{margin:0 0 1.5rem;padding-left:1.1rem;border-left:4px solid var(--red)}
+blockquote p{max-width:none}
+blockquote footer{font-weight:600}
+blockquote footer small{display:block;font-weight:400;color:var(--muted)}
+
+#google-reviews{margin-top:.5rem}
+
+address{font-style:normal}
+.nap{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:1.4rem}
+.nap p{margin-bottom:.5rem}
+
+/* quote form */
+.form-card{background:var(--white);border:1px solid var(--line);border-radius:6px;padding:1.6rem}
+.form-card h3{font-size:1.35rem;margin-bottom:.35rem}
+.form-card .sub{color:var(--muted);font-size:.98rem;margin-bottom:1.1rem}
+.field{margin-bottom:.9rem}
+label{display:block;font-weight:600;font-size:.95rem;margin-bottom:.25rem}
+input,select,textarea{width:100%;font:inherit;padding:.7rem .8rem;border:1.5px solid #AEB8CB;border-radius:6px;background:#fff;color:var(--ink)}
+textarea{min-height:5rem;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+@media (max-width:480px){.two{grid-template-columns:1fr}}
+#done{display:none;margin-top:1rem;padding:.9rem 1rem;background:var(--tint);border-left:4px solid var(--red);border-radius:4px;font-size:.98rem}
+
+footer.site{background:var(--ink);color:#D3DDD8;padding:2.5rem 0;font-size:.97rem}
+footer.site a{color:#fff}
+footer.site ul{list-style:none;padding:0;margin:0 0 1.2rem;display:flex;flex-wrap:wrap;gap:.4rem 1.2rem}
+
+/* sticky mobile call bar */
+.stick{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1fr;background:var(--lead-dark);box-shadow:0 -4px 14px rgba(0,0,0,.25)}
+.stick a{padding:1rem;text-align:center;font:700 1.05rem var(--display);text-decoration:none;color:#fff}
+.stick a:first-child{background:var(--red)}
+@media (min-width:861px){.stick{display:none}body{padding-bottom:0}}
+</style>
 </head>
 <body>
-<header>
-<div class="container nav">
-<div class="logo">JS <span>Carpentry & Build</span></div>
-<nav>
-<a href="#">Services</a><a href="#">Projects</a><a href="#">About</a><a href="#">Reviews</a><a class="btn" href="#quote">Get a Quote</a>
-</nav></div>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <img src="logo.png" alt="JS Carpentry &amp; Build">
+      <span>JS Carpentry &amp; Build</span>
+    </a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#work">Our work</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#areas">Areas</a></li>
+        <li><a href="#faq">Questions</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a class="tel" href="tel:+447970693964">07970 693964</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
 
-<section class="hero">
-<div class="overlay">
-<div class="container">
-<h1>Beautiful Carpentry.<br>Built Around Your Home.</h1>
-<p>Extensions • Kitchens • Renovations • Bespoke Joinery</p>
-<div class="actions">
-<a class="btn" href="#quote">Free Quote</a>
-<a class="btn secondary" href="#projects">Recent Projects</a>
-</div>
-</div></div>
-</section>
+<main id="main">
+  <div class="hero">
+    <div class="wrap">
+      <h1>Builder and carpenter in Bristol</h1>
+      <p class="lead">We are multi-skilled tradesmen covering roofing, extensions, kitchens, house renovations and joinery for homes and businesses across Bristol. Victorian houses are something we know well.</p>
+      <div class="btns">
+        <a class="btn main" href="tel:+447970693964">Call 07970 693964</a>
+        <a class="btn line" href="mailto:james@jscarpentryandbuild.co.uk">Email for a free quote</a>
+      </div>
+      <ul class="facts">
+        <li><b>50+ years</b>of trade experience between us</li>
+        <li><b>Homes and businesses</b>domestic and commercial work</li>
+        <li><b>Victorian housing</b>extensive experience</li>
+        <li><b>Free quotes</b>no obligation</li>
+      </ul>
+    </div>
+  </div>
 
-<section class="container services">
-<h2>What We Do</h2>
-<div class="grid">
-<div class="card"><h3>Extensions</h3><p>Designed to blend seamlessly with your home.</p></div>
-<div class="card"><h3>Kitchens</h3><p>Complete installations and bespoke cabinetry.</p></div>
-<div class="card"><h3>Joinery</h3><p>Wardrobes, shelving and custom storage.</p></div>
-<div class="card"><h3>Renovations</h3><p>From one room to full house refurbishments.</p></div>
-</div>
-</section>
+  <section class="tint" id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <h2 id="work-h">Recent work in Bristol</h2>
+      <p>Filter by the kind of job. Replace each placeholder with a real photo from the job.</p>
 
-<section class="projects" id="projects">
-<div class="container">
-<h2>Recent Projects</h2>
-<div class="gallery">
-<div class="tile">Kitchen Renovation</div>
-<div class="tile">Victorian Extension</div>
-<div class="tile">Garden Office</div>
-<div class="tile">Roofing</div>
-</div>
-</div>
-</section>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button class="chip" aria-pressed="true" data-filter="all">All work</button>
+        <button class="chip" aria-pressed="false" data-filter="roofing">Roofing</button>
+        <button class="chip" aria-pressed="false" data-filter="extensions">Extensions</button>
+        <button class="chip" aria-pressed="false" data-filter="kitchens">Kitchens</button>
+        <button class="chip" aria-pressed="false" data-filter="renovations">Renovations</button>
+        <button class="chip" aria-pressed="false" data-filter="joinery">Joinery</button>
+        <button class="chip" aria-pressed="false" data-filter="outdoor">Outdoor spaces</button>
+      </div>
 
-<section class="container">
-<h2>Why Homeowners Choose Us</h2>
-<div class="grid">
-<div class="card">★★★★★<br><small>Reliable, tidy and excellent workmanship.</small></div>
-<div class="card">20+ years experience</div>
-<div class="card">Fully insured</div>
-<div class="card">Free quotations</div>
-</div>
-</section>
+      <div class="gallery" id="gallery">
+        <figure class="tile" data-cat="extensions">
+          <div class="tile-media ph">Photo: single storey extension</div>
+          <figcaption><b>Kitchen extension, Bristol</b><span>Project title and a one-line summary of the job.</span></figcaption>
+        </figure>
+        <figure class="tile" data-cat="roofing">
+          <div class="tile-media ph">Photo: roof repair</div>
+          <figcaption><b>Roof renovation</b><span>What was wrong, what we did.</span></figcaption>
+        </figure>
+        <figure class="tile" data-cat="renovations">
+          <div class="tile-media ph">Photo: open-plan knock-through</div>
+          <figcaption><b>Victorian knock-through</b><span>Open-plan living space.</span></figcaption>
+        </figure>
+        <figure class="tile" data-cat="kitchens">
+          <div class="tile-media ph">Photo: fitted kitchen</div>
+          <figcaption><b>Kitchen fit</b><span>Supplied and fitted.</span></figcaption>
+        </figure>
+        <figure class="tile" data-cat="joinery">
+          <div class="tile-media ph">Photo: staircase or fitted wardrobes</div>
+          <figcaption><b>Staircase and joinery</b><span>Built to measure.</span></figcaption>
+        </figure>
+        <figure class="tile" data-cat="outdoor">
+          <div class="tile-media ph">Photo: patio with bi-fold doors</div>
+          <figcaption><b>Patio and step-free bi-folds</b><span>Outdoor space.</span></figcaption>
+        </figure>
+        <figure class="tile" data-cat="roofing">
+          <div class="tile-media ph">Photo: loft conversion</div>
+          <figcaption><b>Loft conversion</b><span>Structure and finish.</span></figcaption>
+        </figure>
+        <figure class="tile" data-cat="outdoor">
+          <div class="tile-media ph">Photo: summer house or garden room</div>
+          <figcaption><b>Garden house</b><span>Summer house, playhouse or tree house.</span></figcaption>
+        </figure>
+        <figure class="tile" data-cat="renovations">
+          <div class="tile-media ph">Photo: period renovation</div>
+          <figcaption><b>Period renovation</b><span>Case study of a Bristol property.</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
 
-<section class="quote" id="quote">
-<div class="container">
-<h2>Request a Quote</h2>
-<form>
-<input placeholder="Name">
-<input placeholder="Phone">
-<input placeholder="Email">
-<textarea placeholder="Tell us about your project"></textarea>
-<button class="btn">Send Enquiry</button>
-</form>
-</div>
-</section>
+  <section aria-labelledby="ba-h">
+    <div class="wrap">
+      <h2 id="ba-h">Before and after</h2>
+      <p>Drag the slider to compare. Use a photo taken from the same spot before work started and when it was finished.</p>
+      <div class="ba" id="ba">
+        <div class="ba-pane before"><span>Before photo goes here</span></div>
+        <div class="ba-pane after"><span>After photo goes here</span></div>
+        <span class="ba-tag l">Before</span><span class="ba-tag r">After</span>
+        <div class="ba-handle"></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Drag to compare before and after">
+      </div>
+    </div>
+  </section>
 
-<footer><div class="container">Demo redesign by Sean Kenny © 2026</div></footer>
-<script src="script.js"></script>
-</body></html>
+  <section class="tint" id="services" aria-labelledby="svc-h">
+    <div class="wrap">
+      <h2 id="svc-h">Building and carpentry services in Bristol</h2>
+      <div class="svc">
+        <article>
+          <h3>Roofing in Bristol</h3>
+          <p>Loft conversions, new roof coverings, cut roofs, leaking or sagging roofs, and lead work to keep your roof waterproof.</p>
+          <a class="more" href="https://jscarpentryandbuild.co.uk/roofing.html">Roofing in Bristol: more detail</a>
+        </article>
+        <article>
+          <h3>House extensions in Bristol</h3>
+          <p>Single storey extensions, covering every element from structure to finish.</p>
+          <a class="more" href="https://jscarpentryandbuild.co.uk/extensions.html">Extensions in Bristol: more detail</a>
+        </article>
+        <article>
+          <h3>Kitchen fitting in Bristol</h3>
+          <p>New kitchens supplied and fitted, custom-built kitchens, and alterations or relocation of existing ones.</p>
+          <a class="more" href="https://jscarpentryandbuild.co.uk/kitchens.html">Kitchens in Bristol: more detail</a>
+        </article>
+        <article>
+          <h3>House renovations in Bristol</h3>
+          <p>Open-plan living spaces, knock-throughs and whole-house modernisation.</p>
+          <a class="more" href="https://jscarpentryandbuild.co.uk/house-renovations.html">House renovations in Bristol: more detail</a>
+        </article>
+        <article>
+          <h3>Carpentry and joinery in Bristol</h3>
+          <p>Flooring, windows, doors, stairs, fitted wardrobes, shelving, and furniture for offices and commercial spaces.</p>
+          <a class="more" href="https://jscarpentryandbuild.co.uk/carpenty-and-joinery.html">Carpentry and joinery: more detail</a>
+        </article>
+        <article>
+          <h3>Garden buildings and patios in Bristol</h3>
+          <p>Patios with step-free bi-fold doors, garden houses, summer houses, playhouses and tree houses.</p>
+          <a class="more" href="https://jscarpentryandbuild.co.uk/outdoor-spaces.html">Outdoor spaces: more detail</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="vic-h">
+    <div class="wrap two-col">
+      <div>
+        <h2 id="vic-h">Victorian and period house renovation in Bristol</h2>
+      </div>
+      <div>
+        <p>Much of Bristol's housing is Victorian, and older buildings can reveal all kinds of issues once work begins. We have extensive experience of working on Victorian houses, from knock-throughs as part of modernisation to creating new openings for patio doors.</p>
+        <p>Our focus is always on fit-for-purpose solutions that comply with building codes and will stand the test of time. See our <a href="https://jscarpentryandbuild.co.uk/period-renovations.html">period renovation case study of a Bristol property</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tint" id="areas" aria-labelledby="areas-h">
+    <div class="wrap">
+      <h2 id="areas-h">Areas we cover</h2>
+      <p>Based in BS5, working across Bristol. Not sure whether we cover your street? Call and ask.</p>
+      <!-- EXAMPLE LIST ONLY: confirm with James. Ideally each area becomes its own page. -->
+      <ul class="areas">
+        <li>Easton</li><li>St George</li><li>Redfield</li><li>Eastville</li><li>Fishponds</li>
+        <li>Montpelier</li><li>St Werburghs</li><li>Bishopston</li><li>Redland</li><li>Clifton</li>
+        <li>Southville</li><li>Bedminster</li><li>Totterdown</li><li>Knowle</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="faq" aria-labelledby="faq-h">
+    <div class="wrap">
+      <h2 id="faq-h">Questions people ask us</h2>
+      <details>
+        <summary>What building and carpentry work do you do in Bristol?</summary>
+        <p>Roofing including loft conversions and repairs, single storey extensions, kitchens, whole house renovations, carpentry and joinery, and outdoor spaces such as patios, summer houses and garden houses.</p>
+      </details>
+      <details>
+        <summary>Do you work on Victorian houses?</summary>
+        <p>Yes. We have extensive experience of Victorian housing, including knock-throughs as part of modernisation, new openings for patio doors, and dealing with the issues that older buildings can reveal during works.</p>
+      </details>
+      <details>
+        <summary>Do you do commercial work as well as domestic?</summary>
+        <p>Yes. We do commercial works for small and medium businesses, and building and carpentry works of all sizes for domestic customers.</p>
+      </details>
+      <details>
+        <summary>Can you manage the whole project?</summary>
+        <p>Yes, project management and scheduling can be included if you want it. We also work with local joiners, plasterers, electricians and plumbers to deliver a complete service without the overheads of a large company.</p>
+      </details>
+      <details>
+        <summary>How do I get a quote?</summary>
+        <p>Call <a href="tel:+447970693964">07970 693964</a> or email <a href="mailto:james@jscarpentryandbuild.co.uk">james@jscarpentryandbuild.co.uk</a>. Quotes are free and with no obligation.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="tint" id="reviews" aria-labelledby="rev-h">
+    <div class="wrap">
+      <h2 id="rev-h">Reviews from Bristol clients</h2>
+      <blockquote>
+        <p>We used JS Carpentry to do our kitchen extension and overall were pleased with the work, the finish to the kitchen is neat and professional and the team on site were considerate, polite and friendly, and very easy to work with.</p>
+        <footer>Colin Scott<small>ATA320 Design Certification Specialist</small></footer>
+      </blockquote>
+      <blockquote>
+        <p>James stepped in and managed to keep everything on track, despite a number of hurdles along the way. I would have no hesitation recommending James for any refurbishment or general building related projects.</p>
+        <footer>Simon Finneran<small>Managing Director, Ad Hoc Property Management Ltd</small></footer>
+      </blockquote>
+
+      <!--
+        GOOGLE REVIEWS WIDGET GOES HERE — immediately under the two testimonials above.
+        Once the Google Business Profile is live and has reviews, do one of:
+          (a) paste a third-party widget script (Elfsight, Trustindex, EmbedSocial), or
+          (b) fetch via the Google Places API and render server-side (cache up to 30 days), or
+          (c) hand-copy a few reviews in as more blockquotes.
+        Then replace the placeholder link below with the real Google Business Profile URL,
+        and link the gallery photos to the same URL.
+      -->
+      <div id="google-reviews"></div>
+      <p><a class="btn red" href="GOOGLE-BUSINESS-PROFILE-URL">Read all our reviews on Google</a></p>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="con-h">
+    <div class="wrap two-col">
+      <div>
+        <h2 id="con-h">Get a free quote for your Bristol job</h2>
+        <p>Tell us what you need done and we'll talk it through with you. There is no obligation.</p>
+        <div class="nap">
+          <address>
+            <p><strong>JS Carpentry &amp; Build</strong><br>51 Chelsea Park<br>Bristol<br>BS5 6AH</p>
+            <p>Telephone: <a href="tel:+447970693964">07970 693964</a><br>
+            Email: <a href="mailto:james@jscarpentryandbuild.co.uk">james@jscarpentryandbuild.co.uk</a></p>
+          </address>
+          <a class="btn main" href="https://jscarpentryandbuild.co.uk/contact.php">Use the existing contact form</a>
+        </div>
+      </div>
+      <div class="form-card" id="quote">
+        <h3>Or ask for a quote here</h3>
+        <p class="sub">Takes about a minute. Say as much or as little as you like.</p>
+        <form id="qform">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input id="name" name="name" autocomplete="name" required>
+          </div>
+          <div class="two">
+            <div class="field">
+              <label for="phone">Phone number</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+            </div>
+            <div class="field">
+              <label for="pc">Postcode</label>
+              <input id="pc" name="pc" autocomplete="postal-code">
+            </div>
+          </div>
+          <div class="field">
+            <label for="type">What do you need?</label>
+            <select id="type" name="type">
+              <option>Roofing or loft conversion</option>
+              <option>Extension</option>
+              <option>Kitchen</option>
+              <option>House renovation</option>
+              <option>Carpentry or joinery</option>
+              <option>Outdoor space or garden building</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="msg">Tell us about the job</label>
+            <textarea id="msg" name="msg"></textarea>
+          </div>
+          <button class="btn red" type="submit">Send my enquiry</button>
+          <div id="done" role="status">Your email app should now open with these details ready to send. If it does not, call 07970 693964 instead.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <ul>
+      <li><a href="https://jscarpentryandbuild.co.uk/roofing.html">Roofing</a></li>
+      <li><a href="https://jscarpentryandbuild.co.uk/extensions.html">Extensions</a></li>
+      <li><a href="https://jscarpentryandbuild.co.uk/kitchens.html">Kitchens</a></li>
+      <li><a href="https://jscarpentryandbuild.co.uk/house-renovations.html">House renovations</a></li>
+      <li><a href="https://jscarpentryandbuild.co.uk/carpenty-and-joinery.html">Carpentry and joinery</a></li>
+      <li><a href="https://jscarpentryandbuild.co.uk/outdoor-spaces.html">Outdoor spaces</a></li>
+      <li><a href="https://jscarpentryandbuild.co.uk/period-renovations.html">Period renovations</a></li>
+      <li><a href="https://jscarpentryandbuild.co.uk/privacy.html">Privacy statement</a></li>
+    </ul>
+    JS Carpentry &amp; Build &copy; 2015&ndash;2026. VAT Registration No.: 440 6873 73.
+    51 Chelsea Park, Bristol, BS5 6AH. Telephone: <a href="tel:+447970693964">07970 693964</a>.
+  </div>
+</footer>
+
+<div class="stick">
+  <a href="tel:+447970693964">Call now</a>
+  <a href="#quote">Free quote</a>
+</div>
+
+<script>
+// Gallery filter
+(function(){
+  var chips=document.querySelectorAll('.chip'), tiles=document.querySelectorAll('.tile');
+  chips.forEach(function(c){
+    c.addEventListener('click',function(){
+      chips.forEach(function(x){x.setAttribute('aria-pressed','false')});
+      c.setAttribute('aria-pressed','true');
+      var f=c.dataset.filter;
+      tiles.forEach(function(t){t.hidden=(f!=='all' && t.dataset.cat!==f)});
+    });
+  });
+})();
+// Before / after slider
+(function(){
+  var ba=document.getElementById('ba'), r=ba.querySelector('input');
+  r.addEventListener('input',function(){ba.style.setProperty('--pos',r.value+'%')});
+})();
+// Quote form
+document.getElementById('qform').addEventListener('submit',function(e){
+  e.preventDefault();
+  var f=e.target;
+  var body='Name: '+f.name.value+'\nPhone: '+f.phone.value+'\nPostcode: '+f.pc.value+
+           '\nWork needed: '+f.type.value+'\n\n'+f.msg.value;
+  document.getElementById('done').style.display='block';
+  window.location.href='mailto:james@jscarpentryandbuild.co.uk?subject='+
+    encodeURIComponent('Quote enquiry from website')+'&body='+encodeURIComponent(body);
+});
+</script>
+</body>
+</html>
