@@ -85,7 +85,7 @@ a{color:var(--lead-dark)}
 :focus-visible{outline:3px solid var(--red);outline-offset:3px}
 .wrap{max-width:1100px;margin:0 auto;padding:0 1.25rem}
 h1,h2,h3{font-family:var(--display);margin:0;line-height:1.15;font-weight:700}
-h1{font-size:clamp(2.2rem,5vw,3.6rem);max-width:16ch}
+h1{font-size:clamp(1.9rem,4vw,3rem);max-width:16ch}
 h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:1rem}
 h3{font-size:1.2rem;margin-bottom:.35rem}
 p{margin:0 0 1rem;max-width:68ch}
@@ -94,20 +94,26 @@ p{margin:0 0 1rem;max-width:68ch}
 
 /* header */
 header.site{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
-header.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-top:.6rem;padding-bottom:.6rem;flex-wrap:wrap}
+header.site .wrap{display:flex;align-items:center;justify-content:flex-start;gap:1rem;padding-top:.6rem;padding-bottom:.6rem;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--ink)}
-.brand img{height:44px;width:auto;display:block}
+.brand img{height:52px;width:auto;display:block}
 .brand span{font:700 1.05rem var(--display)}
-nav ul{display:flex;gap:1.3rem;list-style:none;margin:0;padding:0;flex-wrap:wrap;align-items:center}
+nav{margin-left:0}
+nav ul{display:flex;justify-content:flex-start;gap:1.1rem;list-style:none;margin:0;padding:0;flex-wrap:wrap;align-items:center}
 nav a{text-decoration:none;color:var(--ink);font-weight:500}
 nav a:hover{text-decoration:underline}
 nav a.tel{background:var(--red);color:#fff;padding:.5rem .95rem;border-radius:4px;font-weight:600}
 nav a.tel:hover{background:var(--red-dark);text-decoration:none}
+@media (max-width:760px){header.site .wrap{justify-content:center}nav{margin-left:0}}
 @media (max-width:560px){.brand img{height:34px}}
 
 /* hero */
 .hero{padding:3.5rem 0 3rem}
+.hero h1.hero-brand{display:flex;align-items:center;gap:1.25rem;max-width:none;font-family:Georgia,"Times New Roman",serif;font-size: clamp(1.9rem, 4vw, 3rem);font-weight:700;line-height:1.15}
+.hero-brand img{display:block;width:auto;height:clamp(105px,15vw,155px);max-width:38%;object-fit:contain}
+.hero-brand span{display:block;line-height:1.05}
 .hero p.lead{font-size:1.2rem;margin-top:1.25rem}
+@media (max-width:560px){.hero h1.hero-brand{gap:.75rem;font-size:clamp(1.8rem,8vw,2.5rem)}.hero-brand img{height:82px;max-width:34%}}
 .hero .btns{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.5rem}
 .btn{display:inline-block;padding:.85rem 1.35rem;border-radius:4px;font-weight:600;text-decoration:none;border:2px solid var(--lead-dark);cursor:pointer}
 .btn.main{background:var(--lead-dark);color:#fff}
@@ -210,10 +216,6 @@ footer.site ul{list-style:none;padding:0;margin:0 0 1.2rem;display:flex;flex-wra
 
 <header class="site">
   <div class="wrap">
-    <a class="brand" href="/">
-      <img src="logo.png" alt="JS Carpentry &amp; Build">
-      <span>JS Carpentry &amp; Build</span>
-    </a>
     <nav aria-label="Main">
       <ul>
         <li><a href="#work">Our work</a></li>
@@ -230,8 +232,8 @@ footer.site ul{list-style:none;padding:0;margin:0 0 1.2rem;display:flex;flex-wra
 <main id="main">
   <div class="hero">
     <div class="wrap">
-      <h1>Builder and carpenter in Bristol</h1>
-      <p class="lead">We are multi-skilled tradesmen covering roofing, extensions, kitchens, house renovations and joinery for homes and businesses across Bristol. Victorian houses are something we know well.</p>
+      <h1 class="hero-brand"><img src="logos/jscarpentary-logo-transparent.png" alt="JS Carpentry"><span>Renovations, extensions & carpentry across Bristol</span></h1>
+      <p class="lead">We are multi-skilled tradesmen covering roofing, extensions, kitchens, <strong>house renovations</strong> and joinery for homes and businesses across Bristol. Victorian houses are something we know well.</p>
       <div class="btns">
         <a class="btn main" href="tel:+447970693964">Call 07970 693964</a>
         <a class="btn line" href="mailto:james@jscarpentryandbuild.co.uk">Email for a free quote</a>
@@ -252,53 +254,108 @@ footer.site ul{list-style:none;padding:0;margin:0 0 1.2rem;display:flex;flex-wra
 
       <div class="filters" role="group" aria-label="Filter projects">
         <button class="chip" aria-pressed="true" data-filter="all">All work</button>
-        <button class="chip" aria-pressed="false" data-filter="roofing">Roofing</button>
+        <button class="chip" aria-pressed="false" data-filter="renovations">Renovations</button>
         <button class="chip" aria-pressed="false" data-filter="extensions">Extensions</button>
         <button class="chip" aria-pressed="false" data-filter="kitchens">Kitchens</button>
-        <button class="chip" aria-pressed="false" data-filter="renovations">Renovations</button>
         <button class="chip" aria-pressed="false" data-filter="joinery">Joinery</button>
         <button class="chip" aria-pressed="false" data-filter="outdoor">Outdoor spaces</button>
       </div>
 
-      <div class="gallery" id="gallery">
-        <figure class="tile" data-cat="extensions">
-          <div class="tile-media ph">Photo: single storey extension</div>
-          <figcaption><b>Kitchen extension, Bristol</b><span>Project title and a one-line summary of the job.</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="roofing">
-          <div class="tile-media ph">Photo: roof repair</div>
-          <figcaption><b>Roof renovation</b><span>What was wrong, what we did.</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="renovations">
-          <div class="tile-media ph">Photo: open-plan knock-through</div>
-          <figcaption><b>Victorian knock-through</b><span>Open-plan living space.</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="kitchens">
-          <div class="tile-media ph">Photo: fitted kitchen</div>
-          <figcaption><b>Kitchen fit</b><span>Supplied and fitted.</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="joinery">
-          <div class="tile-media ph">Photo: staircase or fitted wardrobes</div>
-          <figcaption><b>Staircase and joinery</b><span>Built to measure.</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="outdoor">
-          <div class="tile-media ph">Photo: patio with bi-fold doors</div>
-          <figcaption><b>Patio and step-free bi-folds</b><span>Outdoor space.</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="roofing">
-          <div class="tile-media ph">Photo: loft conversion</div>
-          <figcaption><b>Loft conversion</b><span>Structure and finish.</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="outdoor">
-          <div class="tile-media ph">Photo: summer house or garden room</div>
-          <figcaption><b>Garden house</b><span>Summer house, playhouse or tree house.</span></figcaption>
-        </figure>
-        <figure class="tile" data-cat="renovations">
-          <div class="tile-media ph">Photo: period renovation</div>
-          <figcaption><b>Period renovation</b><span>Case study of a Bristol property.</span></figcaption>
-        </figure>
-      </div>
+      
+        <div class="gallery" id="gallery">
+      <!-- RENOVATIONS -->
+      <figure class="tile" data-cat="renovations">
+        <img class="tile-media" src="images/completed-open-plan-room.jpg" alt="Completed open-plan living and dining room">
+        <figcaption><b>Victorian knock-through</b><span>Completed open-plan living and dining space.</span></figcaption>
+      </figure>
+      <figure class="tile" data-cat="renovations">
+        <img class="tile-media" src="images/period-property-structural-work.jpg" alt="Structural steelwork during a period property renovation">
+        <figcaption><b>Period property renovation</b><span>Structural work as part of a renovation.</span></figcaption>
+      </figure>
+      <figure class="tile" data-cat="renovations">
+        <img class="tile-media" src="images/restored-cast-iron-range.jpg" alt="Restored cast iron range oven in a brick fireplace">
+        <figcaption><b>Restored Cast Iron Range</b><span>Restoration of a period fireplace feature.</span></figcaption>
+      </figure>
+      <figure class="tile" data-cat="renovations">
+        <img class="tile-media" src="images/hallway-restoration.jpg" alt="Long hallway with archway and slate floor">
+        <figcaption><b>Period Hallway Restoration</b><span>Slate floor and plasterwork restoration.</span></figcaption>
+      </figure>
+      <figure class="tile" data-cat="renovations">
+        <img class="tile-media" src="images/commercial-room-slate-floor.jpg" alt="Commercial room with slate floor and fireplace">
+        <figcaption><b>Commercial Renovation</b><span>Complete fit-out of a heritage building.</span></figcaption>
+      </figure>
+
+      <!-- ROOFING -->
+      <figure class="tile" data-cat="roofing">
+        <img class="tile-media" src="images/roof-repair-work.jpg" alt="Roof repair work in progress">
+        <figcaption><b>Roof repair</b><span>Roof repair work in progress.</span></figcaption>
+      </figure>
+      <figure class="tile" data-cat="roofing">
+        <img class="tile-media" src="images/completed-roof-valley.jpg" alt="Completed roof tiling and valley detail">
+        <figcaption><b>Completed roof valley</b><span>Finished roof with lead valley.</span></figcaption>
+      </figure>
+      <figure class="tile" data-cat="roofing">
+        <img class="tile-media" src="images/chimney-pots.jpg" alt="New chimney pots fitted on a roof">
+        <figcaption><b>Chimney pots</b><span>Replacement and fitting of chimney pots.</span></figcaption>
+      </figure>
+
+      <!-- KITCHENS -->
+      <figure class="tile" data-cat="kitchens">
+        <img class="tile-media" src="images/new-fitted-kitchen.jpg" alt="Newly fitted kitchen with timber flooring">
+        <figcaption><b>New fitted kitchen</b><span>Kitchen installation and finish.</span></figcaption>
+      </figure>
+      <figure class="tile" data-cat="kitchens">
+        <img class="tile-media" src="images/kitchen-renovation-in-progress.jpg" alt="Kitchen renovation in progress with green cabinets and Smeg fridge">
+        <figcaption><b>Kitchen Renovation</b><span>Current project showing structural work.</span></figcaption>
+      </figure>
+      <figure class="tile" data-cat="kitchens">
+        <img class="tile-media" src="images/traditional-kitchen.jpg" alt="Traditional fitted kitchen with timber cabinets">
+        <figcaption><b>Traditional Kitchen</b><span>Fitted timber cabinets and worktops.</span></figcaption>
+      </figure>
+
+      <!-- JOINERY -->
+      <figure class="tile" data-cat="joinery">
+        <img class="tile-media" src="images/timber-staircase.jpg" alt="Timber staircase during construction">
+        <figcaption><b>Timber staircase</b><span>Bespoke carpentry and joinery.</span></figcaption>
+      </figure>
+      <figure class="tile" data-cat="joinery">
+        <img class="tile-media" src="images/classical-entrance-restoration.jpg" alt="Classical entrance with painted grey door and fanlight">
+        <figcaption><b>Classical Entrance</b><span>Restoration of a period front door.</span></figcaption>
+      </figure>
+      <figure class="tile" data-cat="joinery">
+        <img class="tile-media" src="images/bespoke-wardrobe.jpg" alt="Bespoke fitted timber wardrobe">
+        <figcaption><b>Bespoke wardrobe</b><span>Fitted timber storage.</span></figcaption>
+      </figure>
+
+      <!-- EXTENSIONS -->
+      <figure class="tile" data-cat="extensions">
+        <img class="tile-media" src="images/garden-extension-exterior.jpg" alt="Timber-clad garden extension with glazed doors">
+        <figcaption><b>Garden extension</b><span>Timber-clad extension with glazed doors.</span></figcaption>
+      </figure>
+      <figure class="tile" data-cat="extensions">
+        <img class="tile-media" src="images/house-extension-and-porch.jpg" alt="House exterior with a new porch and extension">
+        <figcaption><b>Extension and porch</b><span>New porch and extension.</span></figcaption>
+      </figure>
+      <figure class="tile" data-cat="extensions">
+        <img class="tile-media" src="images/heritage-building-exterior.jpg" alt="Exterior view of a grand heritage building">
+        <figcaption><b>Heritage Building</b><span>Full exterior restoration.</span></figcaption>
+      </figure>
+
+      <!-- OUTDOOR -->
+      <figure class="tile" data-cat="outdoor">
+        <img class="tile-media" src="images/rear-extension-patio.jpg" alt="Rear extension opening onto a paved patio">
+        <figcaption><b>Rear extension and patio</b><span>Extension opening onto an outdoor space.</span></figcaption>
+      </figure>
+      <figure class="tile" data-cat="outdoor">
+        <img class="tile-media" src="images/garden-treehouse.jpg" alt="Timber garden treehouse">
+        <figcaption><b>Garden treehouse</b><span>Timber garden building.</span></figcaption>
+      </figure>
+      <figure class="tile" data-cat="outdoor">
+        <img class="tile-media" src="images/timber-exterior-cladding.jpg" alt="Timber-clad exterior detail">
+        <figcaption><b>Timber exterior cladding</b><span>Timber detailing for outdoor spaces.</span></figcaption>
+      </figure>
     </div>
+
   </section>
 
   <section aria-labelledby="ba-h">
@@ -512,14 +569,16 @@ footer.site ul{list-style:none;padding:0;margin:0 0 1.2rem;display:flex;flex-wra
 // Gallery filter
 (function(){
   var chips=document.querySelectorAll('.chip'), tiles=document.querySelectorAll('.tile');
+  function applyFilter(f){
+    chips.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.filter===f?'true':'false')});
+    tiles.forEach(function(t){t.hidden=(f!=='all' && t.dataset.cat!==f)});
+  }
   chips.forEach(function(c){
     c.addEventListener('click',function(){
-      chips.forEach(function(x){x.setAttribute('aria-pressed','false')});
-      c.setAttribute('aria-pressed','true');
-      var f=c.dataset.filter;
-      tiles.forEach(function(t){t.hidden=(f!=='all' && t.dataset.cat!==f)});
+      applyFilter(c.dataset.filter);
     });
   });
+  applyFilter('all');
 })();
 // Before / after slider
 (function(){
