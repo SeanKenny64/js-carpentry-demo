@@ -653,10 +653,12 @@ footer.site ul{list-style:none;padding:0;margin:0 0 1.2rem;display:flex;flex-wra
           <a class="btn main" href="https://jscarpentryandbuild.co.uk/contact.php">Use the existing contact form</a>
         </div>
       </div>
-      <div class="form-card" id="quote">
+      <div class="solution. form-card" id="quote">
         <h3>Or ask for a quote here</h3>
         <p class="sub">Takes about a minute. Say as much or as little as you like.</p>
-        <form id="qform">
+        <form id="qform" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="524fdbbf-656d-4fac-b05e-11fe668b3f9a">
+          <input type="hidden" name="subject" value="New Website Enquiry">
           <div class="field">
             <label for="name">Your name</label>
             <input id="name" name="name" autocomplete="name" required>
@@ -737,15 +739,33 @@ footer.site ul{list-style:none;padding:0;margin:0 0 1.2rem;display:flex;flex-wra
   var ba=document.getElementById('ba'), r=ba.querySelector('input');
   r.addEventListener('input',function(){ba.style.setProperty('--pos',r.value+'%')});
 })();
-// Quote form
-document.getElementById('qform').addEventListener('submit',function(e){
+// Quote form (Web3Forms)
+// Quote form (Web3Forms)
+document.getElementById('qform').addEventListener('submit', function(e) {
   e.preventDefault();
-  var f=e.target;
-  var body='Name: '+f.name.value+'\nPhone: '+f.phone.value+'\nPostcode: '+f.pc.value+
-           '\nWork needed: '+f.type.value+'\n\n'+f.msg.value;
-  document.getElementById('done').style.display='block';
-  window.location.href='mailto:james@jscarpentryandbuild.co.uk?subject='+
-    encodeURIComponent('Quote enquiry from website')+'&body='+encodeURIComponent(body);
+  var form = e.target;
+  var formData = new FormData(form);
+  var object = Object.fromEntries(formData);
+  
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(object)
+  })
+  .then(async (response) => {
+    if (response.status == 200) {
+      document.getElementById('done').style.display = 'block';
+      form.reset();
+    } else {
+      alert("Something went wrong. Please call 07970 693964 instead.");
+    }
+  })
+  .catch(error => {
+    alert("Something went wrong. Please call 07970 693964 instead.");
+  });
 });
 </script>
 </body>
