@@ -21,16 +21,7 @@
   from the proof-led option, and the quote form from the quote-first option
   placed low, in the contact section.
 
-  TO CHECK / FILL IN BEFORE SHOWING AS A REAL SITE
-  - AREAS: confirm with James which parts of Bristol (and nearby) he really covers.
-  - FAQ answers are based only on what his current site says.
-  - Gallery: replace each .ph placeholder with <img src="..." alt="..."> (keep class "tile-media"),
-    and edit the title and one-line description under it. Aim for 8 to 12 jobs.
-  - Before and after: swap the two .ba-pane placeholders for real photos of the same view.
-  - GOOGLE REVIEWS: see the marked slot under the testimonials. Once the Google
-    Business Profile exists and has reviews, either embed a widget script, fetch via
-    the Places API, or hand-copy them in. Then link the gallery photos to the profile.
-  - All text is taken from the current site (typos fixed). No new claims.
+   No new claims.
 -->
 <script type="application/ld+json">
 {
@@ -113,8 +104,18 @@ nav a.tel:hover{background:var(--red-dark);text-decoration:none}
 .hero-brand img{display:block;width:auto;height:clamp(105px,15vw,155px);max-width:38%;object-fit:contain}
 .hero-brand span{display:block;line-height:1.05}
 .hero p.lead{font-size:1.2rem;margin-top:1.25rem}
-@media (max-width:560px){.hero h1.hero-brand{gap:.75rem;font-size:clamp(1.8rem,8vw,2.5rem)}.hero-brand img{height:82px;max-width:34%}}
-.hero .btns{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.5rem}
+@media (max-width: 700px) {
+  .hero h1.hero-brand {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+  .hero-brand img {
+    height: 100px;
+    max-width: 60%;
+  }
+}.hero .btns{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.5rem}
 .btn{display:inline-block;padding:.85rem 1.35rem;border-radius:4px;font-weight:600;text-decoration:none;border:2px solid var(--lead-dark);cursor:pointer}
 .btn.main{background:var(--lead-dark);color:#fff}
 .btn.line{color:var(--lead-dark);background:transparent}
